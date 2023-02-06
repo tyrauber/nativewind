@@ -66,8 +66,8 @@ export default function runTailwindCli(
   generateStyles(outputCSSPath, outputJSPath);
 
   const isDevelopment = process.env.NODE_ENV !== "production";
-
-  if (isDevelopment) {
+  const notCI = !(process.env.CI)
+  if (isDevelopment && notCI) {
     let doneFirst = false;
 
     spawnCommands.push("--watch", "--poll");
